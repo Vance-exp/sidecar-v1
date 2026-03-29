@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Dark industrial theme matching the Nixie-tube phosphor orange aesthetic
+        of Sidecar V1's onscreen UI.
+    -->
+    <style name="Theme.SidecarCompanion" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand colour: phosphor orange -->
+        <item name="colorPrimary">#FB6000</item>
+        <item name="colorPrimaryVariant">#C74E00</item>
+        <item name="colorOnPrimary">#0A0A0A</item>
+
+        <!-- Secondary / accent -->
+        <item name="colorSecondary">#FB6000</item>
+        <item name="colorSecondaryVariant">#C74E00</item>
+        <item name="colorOnSecondary">#0A0A0A</item>
+
+        <!-- Background -->
+        <item name="android:colorBackground">#0A0A0A</item>
+        <item name="colorSurface">#0F0F0F</item>
+        <item name="colorOnBackground">#E0E0E0</item>
+        <item name="colorOnSurface">#E0E0E0</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">#0A0A0A</item>
+        <item name="android:navigationBarColor">#0A0A0A</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Error -->
+        <item name="colorError">#FF3333</item>
+        <item name="colorOnError">#0A0A0A</item>
+    </style>
+
+</resources>

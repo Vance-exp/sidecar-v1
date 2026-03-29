@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SIDECAR V1</string>
+    <string name="subtitle">ESP32 BRACER COMPANION</string>
+    <string name="notif_service_label">Sidecar Notification Bridge</string>
+
+    <!-- Status -->
+    <string name="status_connected">CONNECTED</string>
+    <string name="status_searching">SEARCHING…</string>
+
+    <!-- Buttons -->
+    <string name="btn_start">START</string>
+    <string name="btn_stop">STOP</string>
+    <string name="btn_grant_notif">GRANT NOTIFICATION ACCESS</string>
+
+    <!-- Log -->
+    <string name="log_label">TX LOG</string>
+</resources>

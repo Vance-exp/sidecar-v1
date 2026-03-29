@@ -1,0 +1,10 @@
+#pragma once
+
+// ── WiFi credentials ─────────────────────────────────────────────────────────
+// Copy this file to config.h and fill in your credentials before building.
+#define WIFI_SSID  "your_ssid_here"
+#define WIFI_PASS  "your_password_here"
+
+// ── Timezone ──────────────────────────────────────────────────────────────────
+#define TZ_OFFSET_SEC  19800   // IST = UTC+5:30  (seconds east of UTC)
+#define NTP_SERVER     "pool.ntp.org"

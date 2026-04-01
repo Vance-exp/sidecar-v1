@@ -92,11 +92,16 @@ void nq_onNotifPacket(const char* raw, int len) {
     const char* bod = ttl ? findPipe(ttl - 1, 1) : nullptr;
     if (!ttl || !bod) return;
 
-    // Compute field lengths
+    // Guard: pointer arithmetic must produce non-negative lengths.
+    // A malformed packet where ttl <= app or bod <= ttl would yield a negative
+    // int which, when passed to %.*s, is UB. Reject those packets.
+    if (ttl - 1 <= app || bod - 1 <= ttl) return;
+
     char a[20], t[40], b[60];
     int aLen = (int)(ttl - 1 - app);
     int tLen = (int)(bod - 1 - ttl);
     int bLen = len - (int)(bod - raw);
+    if (aLen <= 0 || tLen <= 0 || bLen <= 0) return;
 
     snprintf(a, sizeof(a), "%.*s", min(aLen, 19), app);
     snprintf(t, sizeof(t), "%.*s", min(tLen, 39), ttl);
@@ -113,8 +118,10 @@ void nq_onMediaPacket(const char* raw, int len) {
     const char* p3 = findPipe(raw, 3);     // playing (optional)
     const char* p4 = findPipe(raw, 4);     // volume  (optional)
 
+    if (p2 - 1 <= p1) return;  // guard against malformed pointer order
     int aLen = (int)(p2 - 1 - p1);
     int sLen = p3 ? (int)(p3 - 1 - p2) : len - (int)(p2 - raw);
+    if (aLen <= 0 || sLen <= 0) return;
     snprintf(g_mediaArtist, sizeof(g_mediaArtist), "%.*s", min(aLen, 39), p1);
     snprintf(g_mediaSong,   sizeof(g_mediaSong),   "%.*s", min(sLen, 59), p2);
 
@@ -135,13 +142,18 @@ void nq_onCallPacket(const char* raw, int len) {
 // "W|tempC|hi|lo|condition"  (e.g. "W|22|28|15|SUNNY")
 void nq_onWeatherPacket(const char* raw, int len) {
     const char* p = raw + 2;            // skip "W|"
-    g_weather.tempC = (int8_t)atoi(p);
+    // Clamp temperatures to sane range [-60, 60]°C to reject garbage values.
+    int t = atoi(p);
+    g_weather.tempC = (int8_t)constrain(t, -60, 60);
     p = strchr(p, '|'); if (!p) return; p++;
-    g_weather.hiC   = (int8_t)atoi(p);
+    int hi = atoi(p);
+    g_weather.hiC   = (int8_t)constrain(hi, -60, 60);
     p = strchr(p, '|'); if (!p) return; p++;
-    g_weather.loC   = (int8_t)atoi(p);
+    int lo = atoi(p);
+    g_weather.loC   = (int8_t)constrain(lo, -60, 60);
     p = strchr(p, '|'); if (!p) return; p++;
-    strncpy(g_weather.condition, p, 7); g_weather.condition[7] = 0;
+    // snprintf guarantees null-termination; sizeof() guards against future struct changes.
+    snprintf(g_weather.condition, sizeof(g_weather.condition), "%s", p);
     g_weather.updatedAt = millis();
     (void)len;
 }

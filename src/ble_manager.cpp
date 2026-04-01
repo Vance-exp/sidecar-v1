@@ -50,8 +50,24 @@ class SrvCB : public NimBLEServerCallbacks {
 // ── Characteristic callbacks ──────────────────────────────────────────────────
 class ChrCB : public NimBLECharacteristicCallbacks {
     void onWrite(NimBLECharacteristic* c) override {
+        // Rate-limit incoming writes to 20 packets/sec.
+        // Prevents DoS via packet flood (CPU exhaustion, queue overflow, battery drain).
+        static unsigned long s_windowStart = 0;
+        static uint8_t       s_windowCount = 0;
+        unsigned long now = millis();
+        if (now - s_windowStart >= 1000UL) {
+            s_windowStart = now;
+            s_windowCount = 0;
+        }
+        if (++s_windowCount > 20) {
+            Serial.println("[BLE] rate limit — packet dropped");
+            return;
+        }
+
         std::string raw = c->getValue();
-        if (raw.size() < 3 || raw[1] != '|') return;
+        // Reject packets that are empty, too long (>255 = beyond our max MTU),
+        // or don't follow the mandatory X| two-char prefix format.
+        if (raw.size() < 3 || raw.size() > 255 || raw[1] != '|') return;
 
         switch (raw[0]) {
             case 'T':

@@ -55,6 +55,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="false"
         android:theme="@style/Theme.SidecarCompanion">
 
         <activity
@@ -85,19 +86,19 @@
             </intent-filter>
         </service>
 
-        <!-- Call state receiver -->
+        <!-- Call state receiver — system-only intent, no third-party can send it -->
         <receiver
             android:name=".CallReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
 
-        <!-- Boot receiver to restart BLE on reboot -->
+        <!-- Boot receiver — system-only intent, no third-party can send it -->
         <receiver
             android:name=".BootReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

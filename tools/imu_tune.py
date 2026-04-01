@@ -89,6 +89,13 @@ def capture(port: str, out_path: str):
         print("No data captured.")
         return
 
+    out = Path(out_path)
+    if out.exists():
+        ans = input(f"File '{out_path}' already exists. Overwrite? [y/N] ").strip().lower()
+        if ans != "y":
+            print("Aborted — existing file kept.")
+            return
+
     with open(out_path, "w") as f:
         f.write("ts_ms,ax,ay,az,gx,gy,gz,event\n")
         for r in rows:

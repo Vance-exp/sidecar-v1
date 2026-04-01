@@ -2,6 +2,7 @@ package com.sidecar.companion
 
 import android.content.ComponentName
 import android.content.Context
+import android.media.AudioManager
 import android.media.MediaMetadata
 import android.media.session.MediaController
 import android.media.session.MediaSessionManager
@@ -147,12 +148,23 @@ class SidecarMediaManager(
     }
 
     private fun adjustVolume(direction: Int) {
-        val ctrl = activeController ?: return
-        val info = ctrl.playbackInfo ?: return
-        val max  = info.maxVolume
-        val cur  = info.currentVolume
-        val next = (cur + direction).coerceIn(0, max)
-        ctrl.setVolumeTo(next, 0)
+        val ctrl = activeController
+        val info = ctrl?.playbackInfo
+
+        // Local playback (phone speaker / headphones) — use AudioManager.
+        // MediaController.setVolumeTo() is a no-op for PLAYBACK_TYPE_LOCAL.
+        if (info == null || info.playbackType == MediaController.PlaybackInfo.PLAYBACK_TYPE_LOCAL) {
+            val am = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            val flag = if (direction > 0) AudioManager.ADJUST_RAISE else AudioManager.ADJUST_LOWER
+            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, flag, AudioManager.FLAG_SHOW_UI)
+            return
+        }
+
+        // Remote / cast session — use MediaController volume API.
+        // Step by ~7% of max so one press is noticeable regardless of scale.
+        val step = (info.maxVolume * 0.07f).toInt().coerceAtLeast(1)
+        val next = (info.currentVolume + direction * step).coerceIn(0, info.maxVolume)
+        ctrl!!.setVolumeTo(next, 0)
     }
 
     companion object {

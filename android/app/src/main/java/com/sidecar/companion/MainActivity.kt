@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
                 2    -> "WATCH"
                 3    -> "ALARMS"
                 4    -> "MEDIA"
-                else -> "BATTERY"
+                5    -> "BATTERY"
+                else -> "DEMO"
             }
         }.attach()
 

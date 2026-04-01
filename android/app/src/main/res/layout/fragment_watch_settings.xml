@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp">
+
+        <!-- ── POWER section ────────────────────────────────────────────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="POWER MODE"
+            android:textColor="#FB6000"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgPowerMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbPowerNormal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="NORMAL  — 240MHz, BLE on, full features"
+                android:textColor="#B0B0B0"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+            <RadioButton
+                android:id="@+id/rbPowerEfficient"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="EFFICIENT — 80MHz, BLE on, dimmer"
+                android:textColor="#B0B0B0"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+            <RadioButton
+                android:id="@+id/rbPowerDeep"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="DEEPSLEEP — BLE off, local only"
+                android:textColor="#B0B0B0"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+        </RadioGroup>
+
+        <!-- ── POWER MODE CONFIG section ───────────────────────────────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="POWER MODE CONFIG"
+            android:textColor="#FB6000"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#2A2A2A"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- NORMAL mode config -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NORMAL"
+            android:textColor="#B0B0B0"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bright"
+                android:textColor="#7A7A7A"
+                android:textSize="11sp"
+                android:fontFamily="monospace"/>
+            <SeekBar
+                android:id="@+id/sbCfgBright0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="5"
+                android:progressTint="#FB6000"
+                android:thumbTint="#FB6000"/>
+            <TextView
+                android:id="@+id/tvCfgBright0"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:textColor="#FB6000"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Timeout"
+                android:textColor="#7A7A7A"
+                android:textSize="11sp"
+                android:fontFamily="monospace"/>
+            <SeekBar
+                android:id="@+id/sbCfgTimeout0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="9"
+                android:progressTint="#FB6000"
+                android:thumbTint="#FB6000"/>
+            <TextView
+                android:id="@+id/tvCfgTimeout0"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="60s"
+                android:textColor="#FB6000"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <!-- EFFICIENT mode config -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EFFICIENT"
+            android:textColor="#B0B0B0"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bright"
+                android:textColor="#7A7A7A"
+                android:textSize="11sp"
+                android:fontFamily="monospace"/>
+            <SeekBar
+                android:id="@+id/sbCfgBright1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="5"
+                android:progressTint="#FB6000"
+                android:thumbTint="#FB6000"/>
+            <TextView
+                android:id="@+id/tvCfgBright1"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textColor="#FB6000"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Timeout"
+                android:textColor="#7A7A7A"
+                android:textSize="11sp"
+                android:fontFamily="monospace"/>
+            <SeekBar
+                android:id="@+id/sbCfgTimeout1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="9"
+                android:progressTint="#FB6000"
+                android:thumbTint="#FB6000"/>
+            <TextView
+                android:id="@+id/tvCfgTimeout1"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="30s"
+                android:textColor="#FB6000"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <!-- DEEPSLEEP mode config -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DEEPSLEEP"
+            android:textColor="#B0B0B0"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bright"
+                android:textColor="#7A7A7A"
+                android:textSize="11sp"
+                android:fontFamily="monospace"/>
+            <SeekBar
+                android:id="@+id/sbCfgBright2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="5"
+                android:progressTint="#FB6000"
+                android:thumbTint="#FB6000"/>
+            <TextView
+                android:id="@+id/tvCfgBright2"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="#FB6000"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Timeout"
+                android:textColor="#7A7A7A"
+                android:textSize="11sp"
+                android:fontFamily="monospace"/>
+            <SeekBar
+                android:id="@+id/sbCfgTimeout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="9"
+                android:progressTint="#FB6000"
+                android:thumbTint="#FB6000"/>
+            <TextView
+                android:id="@+id/tvCfgTimeout2"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="10s"
+                android:textColor="#FB6000"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <!-- ── DISPLAY section ──────────────────────────────────────────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DISPLAY"
+            android:textColor="#FB6000"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Brightness -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Brightness"
+                android:textColor="#B0B0B0"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <TextView
+                android:id="@+id/tvBrightnessVal"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="#FB6000"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/sbBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5"
+            android:progress="3"
+            android:progressTint="#FB6000"
+            android:thumbTint="#FB6000"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- AOD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Always-on display (AOD)"
+                android:textColor="#B0B0B0"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swAod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <!-- Auto-rotate -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Auto-rotate"
+                android:textColor="#B0B0B0"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swAutoRotate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <!-- ── NOTIFICATIONS section ─────────────────────────────────────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NOTIFICATIONS"
+            android:textColor="#FB6000"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Overlay timeout"
+            android:textColor="#B0B0B0"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="4dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgNotifTimeout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbNotif5s"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5s"
+                android:textColor="#B0B0B0"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+            <RadioButton
+                android:id="@+id/rbNotif10s"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10s"
+                android:textColor="#B0B0B0"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+            <RadioButton
+                android:id="@+id/rbNotif20s"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="20s"
+                android:textColor="#B0B0B0"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+            <RadioButton
+                android:id="@+id/rbNotif30s"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="30s"
+                android:textColor="#B0B0B0"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+            <RadioButton
+                android:id="@+id/rbNotifOff"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="OFF"
+                android:textColor="#B0B0B0"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:buttonTint="#FB6000"/>
+
+        </RadioGroup>
+
+        <!-- ── SOUND section ─────────────────────────────────────────────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SOUND"
+            android:textColor="#FB6000"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enable watch sounds"
+                android:textColor="#B0B0B0"
+                android:textSize="12sp"
+                android:fontFamily="monospace"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <!-- ── Status line ───────────────────────────────────────────────── -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#1E1E1E"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/tvSettingsStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Watch not connected — changes apply when connected"
+            android:textColor="#4A4A4A"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -40,6 +40,9 @@ class SidecarNotifService : NotificationListenerService() {
         // Skip noisy system packages
         if (pkg in BLOCKED_PACKAGES) return
 
+        // Skip user-blocked apps (per-app filter)
+        if (AppFilterPrefs.isBlocked(applicationContext, pkg)) return
+
         // Dedup: same key within 2 seconds → skip
         val now = System.currentTimeMillis()
         val lastSent = dedupCache[sbn.key] ?: 0L
@@ -67,6 +70,7 @@ class SidecarNotifService : NotificationListenerService() {
 
         // ── Standard notification ─────────────────────────────────────────
         val appName = getAppLabel(pkg)
+            .replace("|", "").replace("\n", " ").trim()
             .take(APP_MAX)
 
         val title = (extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
@@ -118,11 +122,11 @@ class SidecarNotifService : NotificationListenerService() {
             }
         }
 
-        // Fallback: read from notification extras
-        val artist = (extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
-            ?: "").trim().take(TITLE_MAX)
+        // Fallback: read from notification extras (TITLE = track name, TEXT = artist/subtitle)
         val song = (extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()
             ?: "").trim().take(BODY_MAX)
+        val artist = (extras.getCharSequence(Notification.EXTRA_TEXT)?.toString()
+            ?: "").trim().take(TITLE_MAX)
         if (song.isNotEmpty()) {
             val packet = "S|$artist|$song"
             Log.d(TAG, "Media fallback → $packet")

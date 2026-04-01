@@ -54,14 +54,27 @@ tools/
 
 ### Power states
 
-| Mode | Current | CPU | WiFi | Display |
-|---|---|---|---|---|
-| Normal | ~58mA | 240MHz | on | on |
-| Efficient | ~41mA | 80MHz | off | on |
-| Extreme | ~15mA | 80MHz | off | 4s auto-off |
-| Light Sleep | ~800μA | sleeping | off | off |
+| Mode | Screen-on | Screen-off | CPU (on/off) | BLE interval | Avg (~5% on-time) |
+|---|---|---|---|---|---|
+| Normal | ~54mA | ~7mA | 160MHz / 80MHz+LS | 100–200ms / 2–4s lat=4 | ~9.5mA |
+| Efficient | ~35mA | ~3mA | 80MHz+LS / 80MHz+LS | 500ms / 2–4s lat=4 | ~4mA |
+| Extreme | ~10mA | ~2mA | 80MHz+LS / 80MHz+LS | off / off | ~2mA |
 
-**Light sleep (NOT deep sleep)** — keeps BLE stack alive. Cost: +12mAh/day.
+**Projected battery life (200mAh prototype / 1200mAh final):**
+
+| Mode | 200mAh | 1200mAh |
+|---|---|---|
+| Normal | ~21h | ~5.3 days |
+| Efficient | ~50h | ~12.5 days |
+| Extreme | ~100h | ~25 days |
+
+**Screen-off behaviour:**
+- NORMAL: drops to 80MHz + auto light sleep on screen-off; restores to 160MHz on wake
+- BLE connection interval relaxes to 2–4s with latency=4 on screen-off (max ~4s notif lag)
+- BLE modem sleep always active (radio sleeps between connection events)
+- Loop rate drops from 100ms → configured per-mode delay when screen is off
+
+**Light sleep (NOT deep sleep)** — keeps BLE stack alive in all modes except Extreme.
 
 ### Key firmware rules
 

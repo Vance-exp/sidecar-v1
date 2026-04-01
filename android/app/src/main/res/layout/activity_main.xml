@@ -5,157 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0A0A0A"
-    android:padding="20dp">
+    android:background="#0A0A0A">
 
-    <!-- ── Title ─────────────────────────────────────────────────────── -->
-    <TextView
-        android:id="@+id/tvTitle"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="#FB6000"
-        android:textSize="28sp"
-        android:fontFamily="monospace"
-        android:textStyle="bold"
-        android:letterSpacing="0.15"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="4dp" />
+        android:background="#0F0F0F"
+        app:tabTextColor="#7A7A7A"
+        app:tabSelectedTextColor="#FB6000"
+        app:tabIndicatorColor="#FB6000"
+        app:tabTextAppearance="@android:style/TextAppearance.Small"
+        app:tabMode="fixed"
+        app:tabGravity="fill"/>
 
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/subtitle"
-        android:textColor="#7A7A7A"
-        android:textSize="11sp"
-        android:fontFamily="monospace"
-        android:layout_marginBottom="24dp" />
-
-    <!-- ── Divider ────────────────────────────────────────────────────── -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#1E1E1E"
-        android:layout_marginBottom="20dp" />
-
-    <!-- ── Status row ────────────────────────────────────────────────── -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="24dp">
-
-        <!-- Colored status dot (tinted via code) -->
-        <ImageView
-            android:id="@+id/statusDot"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:src="@drawable/ic_circle"
-            android:layout_marginEnd="10dp"
-            app:tint="#FF3333" />
-
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/status_searching"
-            android:textColor="#FF3333"
-            android:textSize="14sp"
-            android:fontFamily="monospace"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- ── Start / Stop buttons ──────────────────────────────────────── -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
-
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"
-            android:text="@string/btn_start"
-            android:textColor="#0A0A0A"
-            android:textSize="13sp"
-            android:fontFamily="monospace"
-            android:textStyle="bold"
-            android:backgroundTint="#FB6000" />
-
-        <Button
-            android:id="@+id/btnStop"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="@string/btn_stop"
-            android:textColor="#FB6000"
-            android:textSize="13sp"
-            android:fontFamily="monospace"
-            android:textStyle="bold"
-            android:backgroundTint="#1E1E1E"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-    </LinearLayout>
-
-    <!-- ── Grant notification access (hidden when granted) ───────────── -->
-    <Button
-        android:id="@+id/btnGrantNotif"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="@string/btn_grant_notif"
-        android:textColor="#FF3333"
-        android:textSize="12sp"
-        android:fontFamily="monospace"
-        android:backgroundTint="#1A0000"
-        android:visibility="gone"
-        android:layout_marginBottom="20dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-    <!-- ── Divider ────────────────────────────────────────────────────── -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#1E1E1E"
-        android:layout_marginBottom="12dp" />
-
-    <!-- ── Log label ─────────────────────────────────────────────────── -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/log_label"
-        android:textColor="#7A7A7A"
-        android:textSize="10sp"
-        android:fontFamily="monospace"
-        android:letterSpacing="0.1"
-        android:layout_marginBottom="6dp" />
-
-    <!-- ── Scrollable log ────────────────────────────────────────────── -->
-    <ScrollView
-        android:id="@+id/scrollLog"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#0F0F0F"
-        android:padding="10dp"
-        android:fadeScrollbars="false"
-        android:scrollbarThumbVertical="@null">
-
-        <TextView
-            android:id="@+id/tvLog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#00CC44"
-            android:textSize="11sp"
-            android:fontFamily="monospace"
-            android:lineSpacingMultiplier="1.4"
-            android:hint="— no packets yet —"
-            android:textColorHint="#2A2A2A" />
-
-    </ScrollView>
+        android:layout_weight="1"/>
 
 </LinearLayout>

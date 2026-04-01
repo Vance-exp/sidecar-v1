@@ -15,4 +15,13 @@
 
     <!-- Log -->
     <string name="log_label">TX LOG</string>
+
+    <!-- Tabs -->
+    <string name="tab_connection">CONNECTION</string>
+    <string name="tab_filter">FILTER</string>
+    <string name="tab_settings">SETTINGS</string>
+
+    <!-- Foreground service notification -->
+    <string name="ble_service_notif_title">SIDECAR V1</string>
+    <string name="ble_service_notif_text">Searching for watch…</string>
 </resources>

@@ -29,6 +29,19 @@
     <!-- BLE feature -->
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
 
+    <!-- Required on Android 11+ for the filter tab to enumerate installed apps.
+         Without this, queryIntentActivities returns only apps the system deems
+         visible to us — WhatsApp, Gmail, etc. don't appear. -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <!-- Enumerate launchable apps for the filter tab on Android 11+ -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
         android:name=".SidecarApp"
         android:allowBackup="true"
@@ -48,6 +61,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- BLE foreground service — keeps BleManager alive when app is in background -->
+        <service
+            android:name=".BleService"
+            android:foregroundServiceType="connectedDevice"
+            android:exported="false" />
 
         <!-- Notification Listener Service -->
         <service

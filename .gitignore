@@ -19,5 +19,12 @@ android/.idea/
 # WiFi credentials (never commit)
 src/config.h
 
+# Claude Code memory (local only)
+.claude/
+
+# Benchmark outputs
+benchmark_*.csv
+benchmark_*.png
+
 # macOS
 .DS_Store

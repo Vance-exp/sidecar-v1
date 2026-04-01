@@ -37,30 +37,36 @@
                 android:id="@+id/rbPowerNormal"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="NORMAL  — 240MHz, BLE on, full features"
+                android:text="NORMAL — 160MHz · BLE on · full"
                 android:textColor="#B0B0B0"
                 android:textSize="11sp"
                 android:fontFamily="monospace"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:buttonTint="#FB6000"/>
 
             <RadioButton
                 android:id="@+id/rbPowerEfficient"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="EFFICIENT — 80MHz, BLE on, dimmer"
+                android:text="EFFICIENT — 80MHz · BLE on · dim"
                 android:textColor="#B0B0B0"
                 android:textSize="11sp"
                 android:fontFamily="monospace"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:buttonTint="#FB6000"/>
 
             <RadioButton
                 android:id="@+id/rbPowerDeep"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="DEEPSLEEP — BLE off, local only"
+                android:text="DEEPSLEEP — BLE off · local only"
                 android:textColor="#B0B0B0"
                 android:textSize="11sp"
                 android:fontFamily="monospace"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:buttonTint="#FB6000"/>
 
         </RadioGroup>
@@ -376,7 +382,9 @@
                 android:text="Always-on display (AOD)"
                 android:textColor="#B0B0B0"
                 android:textSize="12sp"
-                android:fontFamily="monospace"/>
+                android:fontFamily="monospace"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/swAod"
@@ -517,7 +525,9 @@
                 android:text="Enable watch sounds"
                 android:textColor="#B0B0B0"
                 android:textSize="12sp"
-                android:fontFamily="monospace"/>
+                android:fontFamily="monospace"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/swSound"
@@ -542,7 +552,9 @@
             android:textColor="#4A4A4A"
             android:textSize="10sp"
             android:fontFamily="monospace"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"/>
 
     </LinearLayout>
 

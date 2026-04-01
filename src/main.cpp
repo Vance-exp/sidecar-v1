@@ -532,11 +532,23 @@ static void handleBtnA_short() {
         }
         break;
 
-    case SCR_MEDIA:
-        // BtnA short = play/pause
-        bleMgr_notify("MC|PLAY");
-        uiClick(1800, 20);
+    case SCR_MEDIA: {
+        // Double-tap within 400ms = PREV; single tap = PLAY/PAUSE
+        static unsigned long s_lastMediaTap = 0;
+        unsigned long now = millis();
+        if (now - s_lastMediaTap < 400UL) {
+            // Second tap — send PREV
+            bleMgr_notify("MC|PREV");
+            uiTick();
+            s_lastMediaTap = 0;  // reset so triple-tap doesn't re-trigger
+        } else {
+            // First tap — send PLAY, record time
+            bleMgr_notify("MC|PLAY");
+            uiClick(1800, 20);
+            s_lastMediaTap = now;
+        }
         break;
+    }
 
     case SCR_POWER:
         if (!g_pwrInCustom) {

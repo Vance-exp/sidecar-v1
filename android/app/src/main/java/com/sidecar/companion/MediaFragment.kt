@@ -53,13 +53,13 @@ class MediaFragment : Fragment() {
             tvArtist.text    = state.artist.ifEmpty { "—" }
 
             if (state.playing) {
-                tvPlayingDot.text = "◉  PLAYING"
+                tvPlayingDot.text = "◉ PLAYING"
                 tvPlayingDot.setTextColor(0xFFFB6000.toInt())
-                btnPlayPause.text = "⏸  PAUSE"
+                btnPlayPause.text = "⏸ PAUSE"
             } else {
-                tvPlayingDot.text = "○  PAUSED"
+                tvPlayingDot.text = "○ PAUSED"
                 tvPlayingDot.setTextColor(0xFF4A4A4A.toInt())
-                btnPlayPause.text = "▶  PLAY"
+                btnPlayPause.text = "▶ PLAY"
             }
 
             if (state.volume >= 0) {

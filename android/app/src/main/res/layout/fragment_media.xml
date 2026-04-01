@@ -118,10 +118,12 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="⏮  PREV"
+            android:text="⏮ PREV"
             android:textColor="#FB6000"
             android:textSize="11sp"
             android:fontFamily="monospace"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:backgroundTint="#1A1A1A"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
@@ -131,11 +133,13 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="▶  PLAY"
+            android:text="▶ PLAY"
             android:textColor="#0A0A0A"
             android:textSize="11sp"
             android:fontFamily="monospace"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:backgroundTint="#FB6000"/>
 
         <Button
@@ -143,10 +147,12 @@
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:text="NEXT  ⏭"
+            android:text="NEXT ⏭"
             android:textColor="#FB6000"
             android:textSize="11sp"
             android:fontFamily="monospace"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:backgroundTint="#1A1A1A"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 

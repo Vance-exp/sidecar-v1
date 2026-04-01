@@ -26,6 +26,12 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
 
+    <!-- Internet — weather fetch via wttr.in -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Vibration — Find My Phone haptic alert -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <!-- BLE feature -->
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
 
